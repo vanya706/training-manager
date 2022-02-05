@@ -1,0 +1,10 @@
+spring:
+  freemarker:
+    template-loader-path: "classpath:/templates"
+    suffix: ".ftl"
+  datasource:
+    url: ${POSTGRES_DB_URL:jdbc:postgresql://localhost:5432/skynet_training_manager}
+    username: ${POSTGRES_DB_USERNAME:postgres}
+    password: ${POSTGRES_DB_PASSWORD:postgres}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect

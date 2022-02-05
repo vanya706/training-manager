@@ -11,10 +11,7 @@
 
     <artifactId>training-manager-ui</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
     <name>training-manager-ui</name>
-    <!-- FIXME change it to the project's website -->
-    <url>https://www.example.com</url>
 
     <build>
         <resources>

@@ -3,8 +3,8 @@ Application named "Training Manager" will help you to store your training data a
 Also, can help with personal data like weight and height etc. As an alternative to Google Sheets and/or Google Calendar.
 
 ## Description
-Application consists of two modules: `radio-service-api`
-(backend and admin panel of the application) and `radio-service-ui`
+Application consists of two modules: `training-manager-api`
+(backend and admin panel of the application) and `training-manager-ui`
 (UI of the application).
 
 ## Start locally

@@ -4,10 +4,7 @@ import com.pnu.skynet.trainingmanagerapi.constant.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 
@@ -21,6 +18,7 @@ public class User extends BaseEntity {
 
     private String lastName;
 
+    @Column(updatable = false)
     private String username;
 
     private String email;
@@ -36,6 +34,7 @@ public class User extends BaseEntity {
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(updatable = false)
     private UserRole userRole;
 
 }

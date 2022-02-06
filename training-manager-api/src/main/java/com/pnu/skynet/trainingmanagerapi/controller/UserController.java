@@ -1,11 +1,12 @@
 package com.pnu.skynet.trainingmanagerapi.controller;
 
+import com.pnu.skynet.trainingmanagerapi.controller.dto.UserCreateRequest;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.UserDto;
+import com.pnu.skynet.trainingmanagerapi.controller.dto.UserUpdateRequest;
 import com.pnu.skynet.trainingmanagerapi.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -18,6 +19,16 @@ public class UserController {
         this.service = service;
     }
 
+
+    @PostMapping
+    public UserDto create(@RequestBody @Valid UserCreateRequest request) {
+        return service.create(request);
+    }
+
+    @PutMapping("/{id}")
+    public UserDto update(@PathVariable String id, @RequestBody @Valid UserUpdateRequest request) {
+        return service.update(id, request);
+    }
 
     @GetMapping("/{id}")
     public UserDto getById(@PathVariable String id) {

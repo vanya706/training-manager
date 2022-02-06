@@ -7,6 +7,7 @@ import com.pnu.skynet.trainingmanagerapi.domain.User;
 import com.pnu.skynet.trainingmanagerapi.mapper.UserMapper;
 import com.pnu.skynet.trainingmanagerapi.repository.UserRepository;
 import com.pnu.skynet.trainingmanagerapi.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,16 +17,20 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper mapper;
 
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository repository, UserMapper mapper) {
+
+    public UserServiceImpl(UserRepository repository, UserMapper mapper, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.mapper = mapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
     @Override
     public UserDto create(UserCreateRequest request) {
         User user = mapper.userCreateRequestToUser(request);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User saved = repository.save(user);
         return mapper.userToUserDto(saved);
     }

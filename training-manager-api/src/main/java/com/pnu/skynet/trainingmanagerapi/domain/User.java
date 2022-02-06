@@ -18,7 +18,7 @@ public class User extends BaseEntity {
 
     private String lastName;
 
-    @Column(updatable = false)
+    @Column(unique = true, updatable = false)
     private String username;
 
     private String email;
@@ -35,6 +35,6 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(updatable = false)
-    private UserRole userRole;
+    private UserRole userRole = UserRole.CUSTOMER;
 
 }

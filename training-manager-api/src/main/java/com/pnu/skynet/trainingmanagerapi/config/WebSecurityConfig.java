@@ -3,6 +3,7 @@ package com.pnu.skynet.trainingmanagerapi.config;
 import com.pnu.skynet.trainingmanagerapi.constant.UserRole;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -33,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/user/register").permitAll()
+                    .antMatchers(HttpMethod.POST, "/user").permitAll()
                     .antMatchers("/exercise").hasRole(UserRole.ADMIN.name())
                     .anyRequest().hasRole(UserRole.CUSTOMER.name())
                     .and()

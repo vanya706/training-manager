@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getById(String id) {
-        return mapper.toDto(findByIdOrThrowException(id));
+        return mapper.userToUserDto(findByIdOrThrowException(id));
     }
 
     private User findByIdOrThrowException(String id) {

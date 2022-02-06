@@ -4,7 +4,10 @@ import com.pnu.skynet.trainingmanagerapi.constant.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 
@@ -12,11 +15,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "A_USER")
-public class User {
-
-    @Id
-    @Column(nullable = false, updatable = false, length = 40)
-    private String id;
+public class User extends BaseEntity {
 
     private String firstName;
 

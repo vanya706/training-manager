@@ -16,8 +16,8 @@ java <env variables: -DvariableName='value'> -jar <jar location>
 
 #### Java env:
 - POSTGRES_DB_URL (_default_: 'jdbc:postgresql://localhost:5432/skynet_training_manager') - _URL for postgres_
-- POSTGRES_DB_USERNAME (_default_: 'postgres') - _postgres username_
-- POSTGRES_DB_PASSWORD (_default_: 'postgres') - _postgres password_
+- POSTGRES_DB_USERNAME (_default_: 'postgres') - _database username_
+- POSTGRES_DB_PASSWORD (_default_: 'postgres') - _database password_
 
 [//]: # (## Spring profiles)
 [//]: # (- default - *profile, used in production*)

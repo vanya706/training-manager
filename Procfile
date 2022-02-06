@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar training-manager-api/target/training-manager-api-0.0.1-SNAPSHOT.jar

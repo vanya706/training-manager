@@ -12,7 +12,7 @@ public record SkyNetUserDetails(String username, String password, UserRole userR
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(userRole.name()));
+        return List.of(new SimpleGrantedAuthority(userRole.getNameWithRolePrefix()));
     }
 
     @Override

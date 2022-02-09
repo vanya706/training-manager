@@ -39,8 +39,8 @@ public class ProgramController {
     }
 
     @GetMapping
-    public List<ProgramDto> getAll(@AuthenticationPrincipal AuthUser user) {
-        return service.getAll(user);
+    public List<ProgramDto> getAllByUsername(@AuthenticationPrincipal AuthUser user) {
+        return service.getAllByUsername(user.getUsername());
     }
 
 }

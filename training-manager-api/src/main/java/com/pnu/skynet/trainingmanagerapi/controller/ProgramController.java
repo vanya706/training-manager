@@ -1,8 +1,8 @@
 package com.pnu.skynet.trainingmanagerapi.controller;
 
+import com.pnu.skynet.trainingmanagerapi.controller.dto.ProgramCreateRequest;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.ProgramDto;
-import com.pnu.skynet.trainingmanagerapi.controller.dto.TrainingCreateRequest;
-import com.pnu.skynet.trainingmanagerapi.controller.dto.TrainingUpdateRequest;
+import com.pnu.skynet.trainingmanagerapi.controller.dto.ProgramUpdateRequest;
 import com.pnu.skynet.trainingmanagerapi.domain.AuthUser;
 import com.pnu.skynet.trainingmanagerapi.service.ProgramService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,12 +24,12 @@ public class ProgramController {
 
 
     @PostMapping
-    public ProgramDto create(@RequestBody @Valid TrainingCreateRequest request) {
+    public ProgramDto create(@RequestBody @Valid ProgramCreateRequest request) {
         return service.create(request);
     }
 
     @PutMapping("/{id}")
-    public ProgramDto update(@PathVariable String id, @RequestBody @Valid TrainingUpdateRequest request) {
+    public ProgramDto update(@PathVariable String id, @RequestBody @Valid ProgramUpdateRequest request) {
         return service.update(id, request);
     }
 

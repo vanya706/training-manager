@@ -3,7 +3,7 @@ package com.pnu.skynet.trainingmanagerapi.controller;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.ProgramDto;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.TrainingCreateRequest;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.TrainingUpdateRequest;
-import com.pnu.skynet.trainingmanagerapi.domain.SkyNetUserDetails;
+import com.pnu.skynet.trainingmanagerapi.domain.AuthUser;
 import com.pnu.skynet.trainingmanagerapi.service.ProgramService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +39,7 @@ public class ProgramController {
     }
 
     @GetMapping
-    public List<ProgramDto> getAll(@AuthenticationPrincipal SkyNetUserDetails user) {
+    public List<ProgramDto> getAll(@AuthenticationPrincipal AuthUser user) {
         return service.getAll(user);
     }
 

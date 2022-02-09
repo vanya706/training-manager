@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public record SkyNetUserDetails(String username, String password, UserRole userRole) implements UserDetails {
+public record AuthUser(String username, String password, UserRole userRole) implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

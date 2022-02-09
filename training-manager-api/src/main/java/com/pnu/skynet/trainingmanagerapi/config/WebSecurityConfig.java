@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().hasRole(UserRole.CUSTOMER.name())
                     .and()
                 .formLogin()
-//                   .loginPage("/login") todo uncomment when page will be ready
+                   .loginPage("/login")
                     .permitAll()
 //                  .defaultSuccessUrl("/dashboard") todo uncomment when the endpoint will be implemented
                     .and()

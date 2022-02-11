@@ -35,11 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers(HttpMethod.POST, "/user").permitAll()
+                    .antMatchers(HttpMethod.GET, "/register").permitAll()
                     .antMatchers("/exercise").hasRole(UserRole.ADMIN.name())
                     .anyRequest().hasRole(UserRole.CUSTOMER.name())
                     .and()
                 .formLogin()
-//                   .loginPage("/login") todo uncomment when page will be ready
+                   .loginPage("/login")
                     .permitAll()
 //                  .defaultSuccessUrl("/dashboard") todo uncomment when the endpoint will be implemented
                     .and()

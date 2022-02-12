@@ -12,6 +12,8 @@ public interface ProgramService {
 
     ProgramDto update(String id, ProgramUpdateRequest request);
 
+    void activate(String id);
+
     ProgramDto getById(String id);
 
     List<ProgramDto> getAllByUsername(String username);

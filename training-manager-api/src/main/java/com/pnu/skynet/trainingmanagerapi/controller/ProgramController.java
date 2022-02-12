@@ -33,6 +33,11 @@ public class ProgramController {
         return service.update(id, request);
     }
 
+    @PatchMapping("/{id}")
+    public void activate(@PathVariable String id) {
+        service.activate(id);
+    }
+
     @GetMapping("/{id}")
     public ProgramDto getById(@PathVariable String id) {
         return service.getById(id);

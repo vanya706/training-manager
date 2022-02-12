@@ -2,6 +2,7 @@ package com.pnu.skynet.trainingmanagerapi.service.impl;
 
 import com.pnu.skynet.trainingmanagerapi.controller.dto.TrainingDto;
 import com.pnu.skynet.trainingmanagerapi.domain.Training;
+import com.pnu.skynet.trainingmanagerapi.exception.EntityNotFoundException;
 import com.pnu.skynet.trainingmanagerapi.mapper.TrainingMapper;
 import com.pnu.skynet.trainingmanagerapi.repository.TrainingRepository;
 import com.pnu.skynet.trainingmanagerapi.service.TrainingService;
@@ -27,7 +28,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     private Training findByIdOrThrowException(String id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(Training.class, id));
     }
 
 }

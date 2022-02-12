@@ -4,6 +4,7 @@ import com.pnu.skynet.trainingmanagerapi.controller.dto.ProgramCreateRequest;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.ProgramDto;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.ProgramUpdateRequest;
 import com.pnu.skynet.trainingmanagerapi.domain.Program;
+import com.pnu.skynet.trainingmanagerapi.exception.EntityNotFoundException;
 import com.pnu.skynet.trainingmanagerapi.mapper.ProgramMapper;
 import com.pnu.skynet.trainingmanagerapi.repository.ProgramRepository;
 import com.pnu.skynet.trainingmanagerapi.service.ProgramService;
@@ -70,7 +71,7 @@ public class ProgramServiceImpl implements ProgramService {
     }
 
     private Program findByIdOrThrowException(String id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(Program.class, id));
     }
 
 }

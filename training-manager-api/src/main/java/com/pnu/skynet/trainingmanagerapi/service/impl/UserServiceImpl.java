@@ -4,6 +4,7 @@ import com.pnu.skynet.trainingmanagerapi.controller.dto.UserCreateRequest;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.UserDto;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.UserUpdateRequest;
 import com.pnu.skynet.trainingmanagerapi.domain.User;
+import com.pnu.skynet.trainingmanagerapi.exception.EntityNotFoundException;
 import com.pnu.skynet.trainingmanagerapi.mapper.UserMapper;
 import com.pnu.skynet.trainingmanagerapi.repository.UserRepository;
 import com.pnu.skynet.trainingmanagerapi.service.UserService;
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private User findByIdOrThrowException(String id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(User.class, id));
     }
 
 }

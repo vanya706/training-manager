@@ -1,6 +1,8 @@
 package com.pnu.skynet.trainingmanagerapi.service.impl;
 
+import com.pnu.skynet.trainingmanagerapi.controller.dto.TrainingCreateRequest;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.TrainingDto;
+import com.pnu.skynet.trainingmanagerapi.controller.dto.TrainingUpdateRequest;
 import com.pnu.skynet.trainingmanagerapi.domain.Training;
 import com.pnu.skynet.trainingmanagerapi.exception.EntityNotFoundException;
 import com.pnu.skynet.trainingmanagerapi.mapper.TrainingMapper;
@@ -21,6 +23,26 @@ public class TrainingServiceImpl implements TrainingService {
         this.mapper = mapper;
     }
 
+
+    @Override
+    public TrainingDto create(TrainingCreateRequest request) {
+        Training training = mapper.trainingCreateRequestToTraining(request);
+        Training saved = repository.save(training);
+        return mapper.trainingToTrainingDto(saved);
+    }
+
+    @Override
+    public TrainingDto update(String id, TrainingUpdateRequest request) {
+        Training trainingFromDb = findByIdOrThrowException(id);
+        mapper.updateTrainingFromTrainingDto(request, trainingFromDb);
+        Training updated = repository.save(trainingFromDb);
+        return mapper.trainingToTrainingDto(updated);
+    }
+
+    @Override
+    public void delete(String id) {
+        repository.deleteById(id);
+    }
 
     @Override
     public TrainingDto getById(String id) {

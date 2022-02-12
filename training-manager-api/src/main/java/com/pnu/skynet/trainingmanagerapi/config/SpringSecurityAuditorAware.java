@@ -1,6 +1,6 @@
 package com.pnu.skynet.trainingmanagerapi.config;
 
-import com.pnu.skynet.trainingmanagerapi.domain.SkyNetUserDetails;
+import com.pnu.skynet.trainingmanagerapi.domain.AuthUser;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -16,8 +16,8 @@ public class SpringSecurityAuditorAware implements AuditorAware<String> {
                 .map(SecurityContext::getAuthentication)
                 .filter(Authentication::isAuthenticated)
                 .map(Authentication::getPrincipal)
-                .map(SkyNetUserDetails.class::cast)
-                .map(SkyNetUserDetails::getUsername);
+                .map(AuthUser.class::cast)
+                .map(AuthUser::getUsername);
     }
 
 }

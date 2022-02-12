@@ -1,6 +1,7 @@
 package com.pnu.skynet.trainingmanagerapi.exception.handler;
 
 import com.pnu.skynet.trainingmanagerapi.exception.EntityNotFoundException;
+import com.pnu.skynet.trainingmanagerapi.exception.FieldValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,14 @@ import static org.springframework.http.HttpStatus.*;
 @Slf4j
 @RestControllerAdvice
 public class ExceptionInterceptor {
+
+
+    @ResponseStatus(BAD_REQUEST)
+    @ExceptionHandler(FieldValidationException.class)
+    public ErrorResponse handleHttpMessageNotReadableException(FieldValidationException e) {
+        log.info(e.getLocalizedMessage(), e);
+        return new ErrorResponse(e.getField(), e.getErrorMessage());
+    }
 
 
     @ResponseStatus(BAD_REQUEST)
@@ -61,8 +70,12 @@ public class ExceptionInterceptor {
                     .collect(Collectors.toList()));
         }
 
+        private ErrorResponse(String field, String errorMessage) {
+            this(Collections.singletonList(new FieldError(field, errorMessage)));
+        }
+
         private ErrorResponse(String errorMessage) {
-            this(Collections.singletonList(new FieldError("GENERAL_ERROR", errorMessage)));
+            this("GENERAL_ERROR", errorMessage);
         }
 
         private record FieldError(String field, String error) {

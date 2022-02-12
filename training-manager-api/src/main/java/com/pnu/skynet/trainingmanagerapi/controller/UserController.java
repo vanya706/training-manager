@@ -20,7 +20,7 @@ public class UserController {
     }
 
 
-    @PostMapping(value = "", consumes = {"application/json"})
+    @PostMapping
     public UserDto create(@RequestBody @Valid UserCreateRequest request) {
         return service.create(request);
     }

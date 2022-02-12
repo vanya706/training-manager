@@ -23,7 +23,7 @@ public class ExceptionInterceptor {
 
     @ResponseStatus(BAD_REQUEST)
     @ExceptionHandler(FieldValidationException.class)
-    public ErrorResponse handleHttpMessageNotReadableException(FieldValidationException e) {
+    public ErrorResponse handleFieldValidationException(FieldValidationException e) {
         log.info(e.getLocalizedMessage(), e);
         return new ErrorResponse(e.getField(), e.getErrorMessage());
     }
@@ -31,7 +31,7 @@ public class ExceptionInterceptor {
 
     @ResponseStatus(BAD_REQUEST)
     @ExceptionHandler(EntityNotFoundException.class)
-    public ErrorResponse handleHttpMessageNotReadableException(EntityNotFoundException e) {
+    public ErrorResponse handleEntityNotFoundException(EntityNotFoundException e) {
         log.info("{} entity not found by the id: {}", e.getClazz().getSimpleName(), e.getId(), e);
         return new ErrorResponse(e.getLocalizedMessage());
     }
@@ -55,7 +55,7 @@ public class ExceptionInterceptor {
 
     @ResponseStatus(INTERNAL_SERVER_ERROR)
     @ExceptionHandler(RuntimeException.class)
-    public ErrorResponse handleHttpMessageNotReadableException(RuntimeException e) {
+    public ErrorResponse handleRuntimeException(RuntimeException e) {
         log.error(e.getMessage(), e);
         return new ErrorResponse(e.getLocalizedMessage());
     }

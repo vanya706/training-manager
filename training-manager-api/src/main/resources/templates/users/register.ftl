@@ -46,6 +46,7 @@
         }
 
         .form-wrapper .form h3 {
+            margin: 15px 0 5px;
             font-size: 24px;
             color: rgba(0, 0, 0, 0.5);
         }
@@ -75,9 +76,10 @@
             margin-top: 30px;
         }
 
-        .form-wrapper #register_btn {
+        .form-wrapper #back_login {
             color: rgba(0, 0, 0, 0.4);
             font-size: 14px;
+            line-height: 0;
         }
 
         .form-wrapper #login_btn {
@@ -114,6 +116,7 @@
     <div class="left"></div>
 
     <form class="form login" id="form">
+        <a href="/login" id="back_login">&#8249; Login</a>
         <h3>We are <span>SKY Training Manager</span></h3>
         <p>Sign up to try our application!</p>
 

@@ -3,7 +3,7 @@ package com.pnu.skynet.trainingmanagerapi.controller.dto;
 import java.time.Duration;
 
 public record ExerciseTaskUpdateRequest(
-        boolean isDone,
+        boolean done,
         Duration expectedDuration,
         Duration finalDuration,
         Integer expectedRepeats,

@@ -13,7 +13,7 @@ public class ExerciseTask extends BaseEntity {
 
     private Integer sequenceNumber;
 
-    private boolean isDone;
+    private boolean done;
 
     // for the Exercise with type TIME
     private Duration expectedDuration;

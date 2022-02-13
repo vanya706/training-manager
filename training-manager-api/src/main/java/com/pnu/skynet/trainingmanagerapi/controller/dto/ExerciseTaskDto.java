@@ -6,7 +6,7 @@ import java.time.Duration;
 public record ExerciseTaskDto(
         String id,
         Integer sequenceNumber,
-        boolean isDone,
+        boolean done,
         Duration expectedDuration,
         Duration finalDuration,
         Integer expectedRepeats,

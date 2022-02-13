@@ -15,9 +15,14 @@ public interface ExerciseTaskMapper {
     ExerciseTaskDto exerciseTaskToExerciseTaskDto(ExerciseTask exerciseTask);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "done", ignore = true)
+    @Mapping(target = "sequenceNumber", ignore = true)
+    @Mapping(target = "finalDuration", ignore = true)
+    @Mapping(target = "finalRepeats", ignore = true)
     ExerciseTask exerciseCreateRequestToExercise(ExerciseTaskCreateRequest request);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "sequenceNumber", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateExerciseTaskFromExerciseTaskDto(ExerciseTaskUpdateRequest exerciseTaskUpdateRequest, @MappingTarget ExerciseTask exerciseTask);
 }

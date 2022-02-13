@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/exercise")
+@RequestMapping(value = "/admin/exercise")
 public class ExerciseController {
 
     private final ExerciseService service;

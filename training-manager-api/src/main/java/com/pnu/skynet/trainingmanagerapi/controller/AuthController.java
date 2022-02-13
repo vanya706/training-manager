@@ -24,5 +24,11 @@ public class AuthController {
 
         return "users/login";
     }
+
+    @GetMapping("/register")
+    public String getRegisterPage(Model model) {
+        return "users/register";
+    }
+
 }
 

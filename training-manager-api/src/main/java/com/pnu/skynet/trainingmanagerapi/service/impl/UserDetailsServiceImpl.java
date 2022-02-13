@@ -1,6 +1,6 @@
 package com.pnu.skynet.trainingmanagerapi.service.impl;
 
-import com.pnu.skynet.trainingmanagerapi.domain.SkyNetUserDetails;
+import com.pnu.skynet.trainingmanagerapi.domain.AuthUser;
 import com.pnu.skynet.trainingmanagerapi.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByUsername(username)
-                .map(user -> new SkyNetUserDetails(user.getUsername(), user.getPassword(), user.getUserRole()))
+                .map(user -> new AuthUser(user.getUsername(), user.getPassword(), user.getUserRole()))
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User does not exist by the username: %s", username)));
     }
 

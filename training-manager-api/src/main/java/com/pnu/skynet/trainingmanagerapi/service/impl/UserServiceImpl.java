@@ -4,6 +4,9 @@ import com.pnu.skynet.trainingmanagerapi.controller.dto.UserCreateRequest;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.UserDto;
 import com.pnu.skynet.trainingmanagerapi.controller.dto.UserUpdateRequest;
 import com.pnu.skynet.trainingmanagerapi.domain.User;
+import com.pnu.skynet.trainingmanagerapi.domain.User_;
+import com.pnu.skynet.trainingmanagerapi.exception.EntityNotFoundException;
+import com.pnu.skynet.trainingmanagerapi.exception.FieldValidationException;
 import com.pnu.skynet.trainingmanagerapi.mapper.UserMapper;
 import com.pnu.skynet.trainingmanagerapi.repository.UserRepository;
 import com.pnu.skynet.trainingmanagerapi.service.UserService;
@@ -30,6 +33,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto create(UserCreateRequest request) {
         User user = mapper.userCreateRequestToUser(request);
+        if (repository.existsByUsername(user.getUsername())) {
+            throw new FieldValidationException(User_.USERNAME, user.getUsername(), "A user with the username already exists!");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User saved = repository.save(user);
         return mapper.userToUserDto(saved);
@@ -37,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto update(String id, UserUpdateRequest request) {
-        User userFromDb = repository.getById(id);
+        User userFromDb = findByIdOrThrowException(id);
         mapper.updateUserFromUserUpdateRequest(request, userFromDb);
         User updated = repository.save(userFromDb);
         return mapper.userToUserDto(updated);
@@ -49,7 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private User findByIdOrThrowException(String id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(User.class, id));
     }
 
 }

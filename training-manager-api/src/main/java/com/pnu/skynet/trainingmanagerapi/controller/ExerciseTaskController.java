@@ -40,9 +40,4 @@ public class ExerciseTaskController {
         service.deleteById(id);
     }
 
-//    @GetMapping
-//    public List<ExerciseTaskDto> getAll() {
-//        return service.getAllForTraining();
-//    }
-
 }

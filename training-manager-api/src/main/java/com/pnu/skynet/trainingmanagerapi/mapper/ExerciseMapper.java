@@ -14,6 +14,7 @@ public interface ExerciseMapper {
 
     Exercise exerciseDtoToExercise(ExerciseDto exerciseDto);
 
+    @Mapping(target = "atedBodyParts", ignore = true) // todo check how it is happens, where is it atedBodyParts field
     ExerciseDto exerciseToExerciseDto(Exercise exercise);
 
     List<ExerciseDto> exercisesToExerciseDtos(List<Exercise> exercises);

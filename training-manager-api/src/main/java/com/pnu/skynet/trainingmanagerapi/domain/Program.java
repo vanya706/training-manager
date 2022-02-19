@@ -7,7 +7,9 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,5 +30,8 @@ public class Program extends AuditableEntity {
     private boolean finished;
 
     private boolean active = true;
+
+    @OneToMany(mappedBy = "program")
+    private List<Training> trainings;
 
 }

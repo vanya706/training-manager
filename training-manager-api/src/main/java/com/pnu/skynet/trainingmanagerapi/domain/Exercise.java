@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -22,5 +24,8 @@ public class Exercise extends BaseEntity {
 
     @SuppressWarnings("JpaAttributeTypeInspection")
     private Set<BodyPart> relatedBodyParts;
+
+    @OneToMany(mappedBy = "exercise")
+    private List<ExerciseTask> exerciseTasks;
 
 }

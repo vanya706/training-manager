@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.Duration;
 
 @Getter
@@ -24,5 +27,13 @@ public class ExerciseTask extends BaseEntity {
     private Integer expectedRepeats;
 
     private Integer finalRepeats;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(nullable = false)
+    private Training training;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(nullable = false)
+    private Exercise exercise;
 
 }

@@ -12,18 +12,22 @@ import java.util.List;
 @Mapper(config = MapStructConfig.class)
 public interface ExerciseMapper {
 
+    @Mapping(target = "exerciseTasks", ignore = true)
     Exercise exerciseDtoToExercise(ExerciseDto exerciseDto);
 
     @Mapping(target = "atedBodyParts", ignore = true) // todo check how it is happens, where is it atedBodyParts field
+    @BeanMapping(ignoreUnmappedSourceProperties = "exerciseTasks")
     ExerciseDto exerciseToExerciseDto(Exercise exercise);
 
     List<ExerciseDto> exercisesToExerciseDtos(List<Exercise> exercises);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "exerciseTasks", ignore = true)
     Exercise exerciseCreateRequestToExercise(ExerciseCreateRequest exerciseCreateRequest);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "type", ignore = true)
+    @Mapping(target = "exerciseTasks", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateExerciseFromExerciseDto(ExerciseUpdateRequest exerciseUpdateRequest, @MappingTarget Exercise exercise);
 

@@ -10,8 +10,11 @@ import org.mapstruct.*;
 @Mapper(config = MapStructConfig.class)
 public interface ExerciseTaskMapper {
 
+    @Mapping(target = "training", ignore = true)
+    @Mapping(target = "exercise", ignore = true)
     ExerciseTask exerciseTaskDtoToExerciseTask(ExerciseTaskDto exerciseTaskDto);
 
+    @BeanMapping(ignoreUnmappedSourceProperties = {"training", "exercise"})
     ExerciseTaskDto exerciseTaskToExerciseTaskDto(ExerciseTask exerciseTask);
 
     @Mapping(target = "id", ignore = true)
@@ -19,10 +22,14 @@ public interface ExerciseTaskMapper {
     @Mapping(target = "sequenceNumber", ignore = true)
     @Mapping(target = "finalDuration", ignore = true)
     @Mapping(target = "finalRepeats", ignore = true)
+    @Mapping(target = "training", ignore = true)
+    @Mapping(target = "exercise", ignore = true)
     ExerciseTask exerciseCreateRequestToExercise(ExerciseTaskCreateRequest request);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "sequenceNumber", ignore = true)
+    @Mapping(target = "training", ignore = true)
+    @Mapping(target = "exercise", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateExerciseTaskFromExerciseTaskDto(ExerciseTaskUpdateRequest exerciseTaskUpdateRequest, @MappingTarget ExerciseTask exerciseTask);
 

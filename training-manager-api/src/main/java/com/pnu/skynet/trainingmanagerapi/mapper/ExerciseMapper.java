@@ -23,6 +23,7 @@ public interface ExerciseMapper {
     Exercise exerciseCreateRequestToExercise(ExerciseCreateRequest exerciseCreateRequest);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "type", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateExerciseFromExerciseDto(ExerciseUpdateRequest exerciseUpdateRequest, @MappingTarget Exercise exercise);
 

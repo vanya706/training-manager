@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface ExerciseTaskRepository extends JpaRepository<ExerciseTask, String> {
 
     @Modifying
-    @Query("UPDATE ExerciseTask SET isDone = true WHERE id = :id")
+    @Query("UPDATE ExerciseTask SET done = true WHERE id = :id")
     void markAsDone(String id);
 
 }

@@ -9,6 +9,7 @@ import com.pnu.skynet.trainingmanagerapi.mapper.ExerciseTaskMapper;
 import com.pnu.skynet.trainingmanagerapi.repository.ExerciseTaskRepository;
 import com.pnu.skynet.trainingmanagerapi.service.ExerciseTaskService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ExerciseTaskServiceImpl implements ExerciseTaskService {
@@ -39,6 +40,7 @@ public class ExerciseTaskServiceImpl implements ExerciseTaskService {
         return mapper.exerciseTaskToExerciseTaskDto(saved);
     }
 
+    @Transactional
     @Override
     public void markAsDone(String id) {
         repository.markAsDone(id);

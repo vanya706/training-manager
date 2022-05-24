@@ -1,0 +1,11 @@
+<aside>
+    <ul class="icons-list">
+        <li class="menu-item"><mat-icon>menu</mat-icon></li>
+
+        <ul class="all-items">
+            <li *ngFor="let item of items" [routerLink]="item.route" [routerLinkActive]="'item-active'">
+                <mat-icon [matTooltip]="item.label">{{item.icon}}</mat-icon>
+            </li>
+        </ul>
+    </ul>
+</aside>

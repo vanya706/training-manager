@@ -14,4 +14,8 @@ public interface TrainingService {
 
     TrainingDto getById(String id);
 
+    long countFinishedTrainings(String programId);
+
+    long countUnFinishedTrainingsByProgramId(String programId);
+
 }

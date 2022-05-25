@@ -49,6 +49,18 @@ public class TrainingServiceImpl implements TrainingService {
         return mapper.trainingToTrainingDto(findByIdOrThrowException(id));
     }
 
+    @Override
+    public long countFinishedTrainings(String programId) {
+        long trainings = repository.countByProgramId(programId);
+        long unFinishedTrainings = countUnFinishedTrainingsByProgramId(programId);
+        return trainings - unFinishedTrainings;
+    }
+
+    @Override
+    public long countUnFinishedTrainingsByProgramId(String programId) {
+        return repository.countDistinctByProgramIdAndExerciseTasks_DoneFalse(programId);
+    }
+
     private Training findByIdOrThrowException(String id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(Training.class, id));
     }
